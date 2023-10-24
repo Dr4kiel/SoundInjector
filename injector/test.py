@@ -1,5 +1,5 @@
 
 
 if __name__ == "__main__":
-    while True:
-        print("Hello world!")
+    for i in range(10):
+        print(i + 1, ": Hello World!")
