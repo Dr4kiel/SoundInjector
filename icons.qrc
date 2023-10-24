@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>icons/ajouter.svg</file>
+        <file>icons/connected.svg</file>
+        <file>icons/disconnected.svg</file>
+    </qresource>
+</RCC>
