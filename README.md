@@ -16,3 +16,5 @@ Une UI est en cours de création pour que l'ajout et la modification de la Sound
 
 - Pouvoir faire plusieurs SoundBoard
 - Améliorer la qualité de l'injection audio (pour l'instant on coupe le micro pour jouer le son, un calcul matriciel serait plus pertinent pour fondre les deux audios)
+- faire un exécutable pour pouvoir facilement installer à la fois VBCable et le SoundInjector
+- Faire une charte graphique pour l'application
