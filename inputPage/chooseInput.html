@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 
 <head>
-    <title>SoundInjector</title>
+    <title>Choose an Input</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,32 +13,27 @@
 
 </head>
 
-<body>
+<body class="bg-secondary">
     <header>
         <!-- place navbar here -->
     </header>
     <main>
-        <!-- Grille de sons  -->
+        <!-- create a list for all inputs given by the preload file -->
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h1 class="text-center">SoundInjector</h1>
+                    <h2>Choisissez l'entrée audio de votre micro : </h2>
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
-                    <h2 class="text-center">Grille de sons</h2>
+                <div id="inputList" class="col-12">
+                    <script src="renderer.js"></script>
                 </div>
             </div>
-            <div class="row row-cols-md-auto" id="songs">
-            </div>
         </div>
-        <script src="renderer.js"></script>
     </main>
     <footer>
         <!-- place footer here -->
-        <!-- place the add_circle icon to the bottom left sticked and resize it correctly-->
-        <img src="icons/add_circle.svg" alt="Add" class="position-fixed bottom-0 end-0 p-3 btn" style="width: 5rem;">
     </footer>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"

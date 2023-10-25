@@ -1,6 +1,7 @@
 const { contextBridge, ipcRenderer } = require('electron')
 
-contextBridge.exposeInMainWorld('versions', {
-    loadSong: () => ipcRenderer.invoke('loadSong')
+contextBridge.exposeInMainWorld('electronAPI', {
+    chooseInput: () => ipcRenderer.invoke('chooseInput'),
+    inputChosen: (input) => ipcRenderer.send('inputChosen', input)
     // nous pouvons aussi exposer des variables en plus des fonctions
 })

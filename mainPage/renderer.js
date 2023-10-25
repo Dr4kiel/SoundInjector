@@ -1,11 +1,3 @@
-const loadSong = async () => {
-    const response = await window.versions.loadSong()
-    console.log(response)
-    response.forEach(elem => {
-        document.querySelector('#songs').innerHTML += songElement(elem)
-    });
-}
-
 const songElement = (song) => {
     return `
         <div class="col m-2 p-2">
@@ -16,5 +8,3 @@ const songElement = (song) => {
         </div>
     `
 }
-
-loadSong()
