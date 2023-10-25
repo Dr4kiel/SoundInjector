@@ -2,13 +2,13 @@ const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 const { spawn } = require('child_process');
 
-function createWindow() {
+function createInputPage() {
     const win = new BrowserWindow({
         width: 1280,
         height: 1000,
         // autoHideMenuBar: true,
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js')
+            preload: path.join(__dirname, 'inputPage/preload.js')
         }
     })
 
@@ -19,6 +19,31 @@ function createWindow() {
     // python.stdout.on('data', data => {
     //     console.log(`stdout: ${data}`);
     // });
+    return win;
+}
+
+function createMainPage(arg) {
+    const win = new BrowserWindow({
+        width: 1280,
+        height: 1000,
+        // autoHideMenuBar: true,
+        webPreferences: {
+            preload: path.join(__dirname, 'mainPage/preload.js'),
+            contextIsolation: true
+        }
+    })
+
+    win.loadFile('mainPage/mainPage.html')
+
+    const dir = "injector/sounds"
+    const fs = require('fs')
+    const files = fs.readdirSync(dir)
+    console.log(files)
+
+    ipcMain.handle('getFiles', async () => {
+        return files
+    })
+
     return win;
 }
 
@@ -38,12 +63,12 @@ app.whenReady().then(() => {
     })
 
     ipcMain.on('inputChosen', (event, arg) => {
-        // python.stdin.write(arg)
-        console.log(arg)
-        currentWindow.loadFile('mainPage/index.html')
+        // initialize the main page
+        currentWindow.close()
+        currentWindow = createMainPage(arg)
     })
 
-    currentWindow = createWindow()
+    currentWindow = createInputPage()
 })
 
 app.on('window-all-closed', () => {
