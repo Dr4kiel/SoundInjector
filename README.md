@@ -1,10 +1,10 @@
-# SoundInjectorUI
+# SoundInjector
 
 Le but du projet est de pouvoir injecter des fichiers audio dans un flux audio. L'utilisation serait d'en faire une SoundBoard custom.
 
 ## Etat du projet
 
-La partie d'injection fonctionne et à été testé. Elle sera prochainement disponible sur le repo.
+La partie d'injection fonctionne et à été testé.
 Une CLI ou interaction par console de commande à été développé. Elle est sommaire et sera sujette à modification et amélioration.
 Il faut tout de même un Virtual Audio Cable pour pouvoir "filouter" l'injection de flux audio (l'injection d'audio dans un micro n'étant par défaut pas possible)
 
