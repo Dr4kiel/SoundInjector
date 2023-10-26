@@ -18,6 +18,16 @@ const renderSongs = async () => {
 
     const songsContainer = document.getElementById('songsContainer')
     songsContainer.innerHTML = songs.map(songElement).join('')
+
+    if (songs.length == 0) {
+        songsContainer.innerHTML = `
+            <div class="col m-2 p-2">
+                <div class="w-auto h-auto">
+                    <a href="#" class="btn btn-lg btn-primary">No song found</a>
+                </div>
+            </div>
+        `
+    }
 }
 
 renderSongs()

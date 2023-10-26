@@ -3,6 +3,17 @@ const chooseInput = async () => {
     // make a pop up to choose the input with the list of the inputs
     const inputList = document.querySelector('#inputList')
     inputList.innerHTML = ''
+
+    if (data.length == 0) {
+        inputList.innerHTML = `
+            <div class="m-2 p-2">
+                <div class="w-100 h-auto">
+                    <a href="#" class="btn btn-lg btn-primary">No input found</a>
+                </div>
+            </div>
+        `
+    }
+
     data.forEach(input => {
         inputList.innerHTML += inputElement(input)
     })
