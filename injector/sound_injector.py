@@ -18,9 +18,17 @@ class SoundInjector:
         self.cable_input_index = 0
         self.cable_output_index = []
 
+        list_object_printed = []
         for i in range(self.p.get_device_count()):
-            # list all devices
-            print(self.p.get_device_info_by_index(i))
+            # list all input devices
+            # format : {index: 1, name: example}
+            if self.p.get_device_info_by_index(i)['maxInputChannels'] > 0:
+                object_printed = {
+                    'index': i,
+                    'name': self.p.get_device_info_by_index(i)['name']
+                }
+                list_object_printed.append(object_printed)
+        print(list_object_printed)
 
         # ask for index of cable input
         self.cable_input_index = int(input("Enter cable input index: "))
@@ -55,7 +63,8 @@ class SoundInjector:
 
         # run a thread to play input to output
         self.event = threading.Event()
-        self.thread = threading.Thread(target=self.play, args=(self.stream, self.event))
+        self.thread = threading.Thread(
+            target=self.play, args=(self.stream, self.event))
         self.thread.start()
         self.event.set()
 

@@ -38,7 +38,6 @@ function createMainPage(arg) {
     const dir = "injector/sounds"
     const fs = require('fs')
     const files = fs.readdirSync(dir)
-    console.log(files)
 
     ipcMain.handle('getFiles', async () => {
         return files
@@ -50,22 +49,34 @@ function createMainPage(arg) {
 app.whenReady().then(() => {
 
     var currentWindow = null
+    let python = null
 
     ipcMain.handle('chooseInput', async () => {
-        const python = spawn('python', ['injector/test.py']);
+        python = spawn('python', ['injector/console.py']);
         const data = await new Promise((resolve, reject) => {
             python.stdout.on('data', data => {
                 resolve(data.toString())
             })
         })
+        // get only the json part
+        const dataStart = data.indexOf('{')
+        const dataEnd = data.lastIndexOf('}')
+        var dataWithJSON = data.substring(dataStart, dataEnd + 1)
+        // add [ and ] to make it a valid json array and the missing brackets
+        dataWithJSON = '[' + dataWithJSON + ']'
+        dataWithJSON = dataWithJSON.replace(/'/g, '"')
+
         // convert strings to objects
-        return JSON.parse(data)
+        return JSON.parse(dataWithJSON)
     })
 
     ipcMain.on('inputChosen', (event, arg) => {
         // initialize the main page
         currentWindow.close()
         currentWindow = createMainPage(arg)
+        // write in the python process
+        python.stdin.write(arg)
+        python.stdin.end()
     })
 
     currentWindow = createInputPage()
